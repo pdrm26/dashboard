@@ -23,12 +23,15 @@ export default function ProductInfo({
     formState: { errors },
   } = useForm();
   const submitFormHandler = (formData) => {
-    formData.categoryId = Number(formData.categoryId);
-    formData.id = Number(formData.id);
-    formData.category = categories.find(
-      (category) => category.id === formData.categoryId
-    ).title;
-    onSetProductData(formData);
+    const categoryName = categories.find(
+      (category) => category.id === Number(formData.categoryId)
+    );
+    const newFormData = {
+      ...formData,
+      category: categoryName.title,
+      editMode: false,
+    };
+    onSetProductData(newFormData);
   };
   // console.log(watch("productPrice"));
   return (

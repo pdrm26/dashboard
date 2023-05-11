@@ -21,7 +21,7 @@ export default function ProductContainer() {
   };
   const setProductsDataHandler = (productData) => {
     const productIndex = productsList.findIndex(
-      (product) => product.id === productData.id
+      (product) => product.id === Number(productData.id)
     );
 
     if (productIndex < 0) {
@@ -31,7 +31,7 @@ export default function ProductContainer() {
 
     setProductsList((prevProducts) =>
       prevProducts.map((product) => {
-        if (product.id === productData.id) {
+        if (product.id === Number(productData.id)) {
           return productData;
         }
         return product;
