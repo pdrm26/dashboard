@@ -25,7 +25,7 @@ export default function ProductContainer() {
     );
 
     if (productIndex < 0) {
-      setProductsList((prevProducts) => [productData, ...prevProducts]);
+      setProductsList((prevProducts) => [...prevProducts, productData]);
       return;
     }
 
