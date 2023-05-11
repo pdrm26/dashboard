@@ -19,6 +19,25 @@ export default function ProductContainer() {
     setlastEditProduct(newEditableProduct);
     setCurrentEditProduct(newEditableProduct);
   };
+  const setProductsDataHandler = (productData) => {
+    const productIndex = productsList.findIndex(
+      (product) => product.id === productData.id
+    );
+
+    if (productIndex < 0) {
+      setProductsList((prevProducts) => [productData, ...prevProducts]);
+      return;
+    }
+
+    setProductsList((prevProducts) =>
+      prevProducts.map((product) => {
+        if (product.id === productData.id) {
+          return productData;
+        }
+        return product;
+      })
+    );
+  };
   return (
     <div className="container mt-5">
       <div className="card">
@@ -35,6 +54,7 @@ export default function ProductContainer() {
               <ProductInfo
                 categories={categories}
                 currentProduct={currentEditProduct}
+                onSetProductData={setProductsDataHandler}
               />
             </div>
           </div>

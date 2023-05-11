@@ -5,6 +5,7 @@ export const products = [
     category: "Technology",
     categoryId: 151,
     price: 2000,
+    editMode: true,
   },
   {
     id: 2,
@@ -12,8 +13,16 @@ export const products = [
     category: "Health",
     categoryId: 252,
     price: 10,
+    editMode: false,
   },
-  { id: 3, title: "Bicycle", category: "Sport", categoryId: 353, price: 200 },
+  {
+    id: 3,
+    title: "Bicycle",
+    category: "Sport",
+    categoryId: 353,
+    price: 200,
+    editMode: false,
+  },
 ];
 
 export const categories = [
