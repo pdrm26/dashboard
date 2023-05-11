@@ -26,7 +26,7 @@ export default function ProductInfo({
   // console.log(watch("productPrice"));
   return (
     <form className="row g-3" onSubmit={handleSubmit(submitFormHandler)}>
-      <div className="col-md-6">
+      <div className="col-md-3">
         <label htmlFor="productCode" className="form-label">
           Product Code
         </label>
@@ -35,16 +35,12 @@ export default function ProductInfo({
           className="form-control"
           id="id"
           name="id"
+          disabled
+          readOnly
           {...register("id", { required: true, pattern: /\d+/ })}
         />
-        {errors.id?.type === "required" && (
-          <p className="text-danger mt-1">Product code is required.</p>
-        )}
-        {errors.id?.type === "pattern" && (
-          <p className="text-danger mt-1">Just enter numbers.</p>
-        )}
       </div>
-      <div className="col-md-6">
+      <div className="col-md-9">
         <label htmlFor="title" className="form-label">
           Product Title
         </label>
@@ -59,7 +55,7 @@ export default function ProductInfo({
           <p className="text-danger mt-1">Write a title for your product.</p>
         )}
       </div>
-      <div className="col-8">
+      <div className="col-9">
         <label htmlFor="categoryId" className="form-label">
           Group of Products
         </label>
@@ -76,7 +72,7 @@ export default function ProductInfo({
           ))}
         </select>
       </div>
-      <div className="col-4">
+      <div className="col-3">
         <label htmlFor="price" className="form-label">
           Price
         </label>
