@@ -1,4 +1,14 @@
 export default function ProductManagement() {
+  const submitFormHandler = event => {
+    event.preventDefault();
+    const form = new FormData(event.target)
+    const productCode = form.get("productCode");
+    const productTitle = form.get("productTitle");
+    const productsGroup = form.get("productsGroup");
+    const productPrice = form.get('productPrice') 
+
+    console.log(productCode, productsGroup, productTitle, productPrice);
+  }
   return (
     <div className="container border mt-5 rounded overflow-hidden">
       <div className="row">
@@ -63,7 +73,7 @@ export default function ProductManagement() {
           </table>
         </div>
         <div className="col-md-5">
-          <form className="row g-3">
+          <form className="row g-3" onSubmit={submitFormHandler}>
             <div className="col-md-6">
               <label htmlFor="productCode" className="form-label">
                 Product Code
