@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect  } from "react";
 import { useForm } from "react-hook-form";
 
 export default function ProductInfo({
@@ -6,16 +6,6 @@ export default function ProductInfo({
   currentProduct,
   onSetProductData,
 }) {
-  // const [productCode, setProductCode] = useState(currentProduct.id);
-  // const [productTitle, setProductTitle] = useState(currentProduct.title);
-  // const [productGroup, setProductGroup] = useState(currentProduct.category);
-  // const [productPrice, setProductPrice] = useState(currentProduct.price);
-
-  // const productCodeHandler = (event) => setProductCode(event.target.value);
-  // const productTitleHandler = (event) => setProductTitle(event.target.value);
-  // const productGroupHandler = (event) => setProductGroup(event.target.value);
-  // const productPriceHandler = (event) => setProductPrice(event.target.value);
-
   const {
     register,
     handleSubmit,
@@ -45,8 +35,6 @@ export default function ProductInfo({
           className="form-control"
           id="id"
           name="id"
-          defaultValue={currentProduct.id}
-          // onChange={productCodeHandler}
           {...register("id", { required: true, pattern: /\d+/ })}
         />
         {errors.id?.type === "required" && (
@@ -65,8 +53,6 @@ export default function ProductInfo({
           className="form-control"
           id="title"
           name="title"
-          defaultValue={currentProduct.title}
-          // onChange={titleHandler}
           {...register("title", { required: true })}
         />
         {errors.title?.type === "required" && (
@@ -81,8 +67,6 @@ export default function ProductInfo({
           id="categoryId"
           className="form-select"
           name="categoryId"
-          defaultValue={currentProduct.categoryId}
-          // onChange={productGroupHandler}
           {...register("categoryId")}
         >
           {categories.map(({ id, title }) => (
@@ -101,13 +85,11 @@ export default function ProductInfo({
           className="form-control"
           id="price"
           name="price"
-          defaultValue={currentProduct.price}
           {...register("price", {
             required: true,
             pattern: /\d+/,
             maxLength: 6,
           })}
-          // onChange={productPriceHandler}
         />
         {errors.price?.type === "required" && (
           <p className="text-danger mt-1">The product price is required.</p>
