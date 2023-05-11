@@ -1,7 +1,8 @@
 import ProductItem from "./ProductItem";
 
-export default function ProductList({ products, onEditProduct }) {
+export default function ProductList({ products, onEditProduct, onRemoveProduct }) {
   const onEditHandler = productId => onEditProduct(productId)
+  const onRemoveHandler = productId => onRemoveProduct(productId)
   return (
     <table className="table table-striped">
       <thead>
@@ -15,7 +16,7 @@ export default function ProductList({ products, onEditProduct }) {
       </thead>
       <tbody>
         {products.map((product) => (
-          <ProductItem product={product} key={product.id} onEdit={onEditHandler}/>
+          <ProductItem product={product} key={product.id} onEdit={onEditHandler} onRemove={onRemoveHandler}/>
         ))}
       </tbody>
     </table>

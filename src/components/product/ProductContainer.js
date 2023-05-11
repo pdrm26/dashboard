@@ -19,6 +19,14 @@ export default function ProductContainer() {
     setlastEditProduct(newEditableProduct);
     setCurrentEditProduct(newEditableProduct);
   };
+
+  const onRemoveProductHandler = (productId) => {
+    const newProduct = productsList.filter(
+      (product) => product.id !== productId
+    );
+    setProductsList(newProduct);
+  };
+
   const setProductsDataHandler = (productData) => {
     const productIndex = productsList.findIndex(
       (product) => product.id === Number(productData.id)
@@ -48,6 +56,7 @@ export default function ProductContainer() {
               <ProductList
                 products={productsList}
                 onEditProduct={onEditProductHandler}
+                onRemoveProduct={onRemoveProductHandler}
               />
             </div>
             <div className="col-md-5">
