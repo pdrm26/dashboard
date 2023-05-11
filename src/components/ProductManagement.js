@@ -93,10 +93,10 @@ export default function ProductManagement() {
               </select>
             </div>
             <div className="col-4">
-              <label htmlFor="price" className="form-label">
+              <label htmlFor="productPrice" className="form-label">
                 Price
               </label>
-              <input type="text" className="form-control" id="price" name="price"/>
+              <input type="text" className="form-control" id="productPrice" name="productPrice"/>
             </div>
             <div className="col-12 text-end">
               <button type="submit" className="btn btn-primary">
