@@ -1,17 +1,18 @@
-import { useEffect  } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function ProductInfo({
   categories,
-  currentProduct,
+  selectedProduct,
   onSetProductData,
 }) {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: selectedProduct }); //instead of using defaultValue for each input you can set this here.
+
   const submitFormHandler = (formData) => {
     const categoryName = categories.find(
       (category) => category.id === Number(formData.categoryId)
@@ -20,27 +21,32 @@ export default function ProductInfo({
       ...formData,
       category: categoryName.title,
       editMode: false,
+      id: Number(formData.id),
     };
     onSetProductData(newFormData);
+    reset();
   };
+
+  // watch from useForm() work as a watcher for an element you want to see value real time
   // console.log(watch("productPrice"));
+
+  useEffect(() => {
+    //reset the form when current product selected change
+    //https://react-hook-form.com/api/useform/reset/
+    reset(selectedProduct);
+  }, [selectedProduct, reset]);
+
   return (
     <form className="row g-3" onSubmit={handleSubmit(submitFormHandler)}>
-      <div className="col-md-3">
-        <label htmlFor="productCode" className="form-label">
-          Product Code
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="id"
-          name="id"
-          disabled
-          readOnly
-          {...register("id", { required: true, pattern: /\d+/ })}
-        />
-      </div>
-      <div className="col-md-9">
+      <input
+        type="hidden"
+        className="form-control"
+        id="id"
+        name="id"
+        defaultValue={0}
+        {...register("id")}
+      />
+      <div className="col-12">
         <label htmlFor="title" className="form-label">
           Product Title
         </label>
@@ -63,7 +69,7 @@ export default function ProductInfo({
           id="categoryId"
           className="form-select"
           name="categoryId"
-          {...register("categoryId")}
+          {...register("categoryId", {required: true})}
         >
           {categories.map(({ id, title }) => (
             <option value={id} key={id}>
@@ -71,6 +77,7 @@ export default function ProductInfo({
             </option>
           ))}
         </select>
+        {errors.categoryId?.type === 'required' && <p className="text-danger mt-1">Category is required.</p>}
       </div>
       <div className="col-3">
         <label htmlFor="price" className="form-label">

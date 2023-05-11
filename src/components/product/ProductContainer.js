@@ -1,12 +1,13 @@
 import ProductInfo from "./ProductInfo";
 import ProductList from "./ProductList";
-import { products, categories } from "../../InitialData";
+import { products, categories, emptyProduct } from "../../InitialData";
 import { useState } from "react";
 
 export default function ProductContainer() {
   const [productsList, setProductsList] = useState(products);
-  const [currentEditProduct, setCurrentEditProduct] = useState(productsList[0]);
-  const [lastEditProduct, setlastEditProduct] = useState(productsList[0]);
+  const [selectedProduct, setSelectedProduct] = useState(emptyProduct);
+  const [lastEditProduct, setlastEditProduct] = useState(emptyProduct);
+
   const onEditProductHandler = (productId) => {
     const productIndex = productsList.findIndex(
       (product) => product.id === productId
@@ -17,7 +18,7 @@ export default function ProductContainer() {
     }
     newEditableProduct.editMode = true;
     setlastEditProduct(newEditableProduct);
-    setCurrentEditProduct(newEditableProduct);
+    setSelectedProduct(newEditableProduct);
   };
 
   const onRemoveProductHandler = (productId) => {
@@ -28,23 +29,23 @@ export default function ProductContainer() {
   };
 
   const setProductsDataHandler = (productData) => {
-    const productIndex = productsList.findIndex(
-      (product) => product.id === Number(productData.id)
-    );
-
-    if (productIndex < 0) {
-      setProductsList((prevProducts) => [...prevProducts, productData]);
-      return;
+    if (productData.id === 0) {
+      // Add a new product
+      let lastProductIndex = productsList.at(-1).id
+      setProductsList((prevProducts) => [...prevProducts, {...productData, id: lastProductIndex += 1}]);
+    } else {
+      // Edit the current product
+      setProductsList((prevProducts) =>
+        prevProducts.map((product) => {
+          if (product.id === Number(productData.id)) {
+            return productData;
+          }
+          return product;
+        })
+      );
     }
 
-    setProductsList((prevProducts) =>
-      prevProducts.map((product) => {
-        if (product.id === Number(productData.id)) {
-          return productData;
-        }
-        return product;
-      })
-    );
+    setSelectedProduct(emptyProduct);
   };
   return (
     <div className="container mt-5">
@@ -62,7 +63,7 @@ export default function ProductContainer() {
             <div className="col-md-5">
               <ProductInfo
                 categories={categories}
-                currentProduct={currentEditProduct}
+                selectedProduct={selectedProduct}
                 onSetProductData={setProductsDataHandler}
               />
             </div>

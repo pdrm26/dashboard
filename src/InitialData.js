@@ -1,3 +1,12 @@
+export const emptyProduct = {
+  id: "",
+  title: "",
+  category: "",
+  categoryId: "",
+  price: "",
+  editMode: "",
+};
+
 export const products = [
   {
     id: 1,
