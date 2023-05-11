@@ -68,32 +68,35 @@ export default function ProductManagement() {
               <label htmlFor="productCode" className="form-label">
                 Product Code
               </label>
-              <input type="email" className="form-control" id="inputEmail4" />
+              <input type="text" className="form-control" id="productCode" name="productCode"/>
             </div>
             <div className="col-md-6">
               <label htmlFor="productTitle" className="form-label">
                 Product Title
               </label>
               <input
-                type="password"
+                type="text"
                 className="form-control"
                 id="productTitle"
+                name="productTitle"
               />
             </div>
             <div className="col-8">
               <label htmlFor="productsGroup" className="form-label">
                 Group of Products
               </label>
-              <select id="productsGroup" className="form-select">
-                <option>Choose...</option>
-                <option>...</option>
+              <select id="productsGroup" className="form-select" name="productsGroup">
+                <option>Technology</option>
+                <option>Book</option>
+                <option>Health</option>
+                <option>Sport</option>
               </select>
             </div>
             <div className="col-4">
               <label htmlFor="price" className="form-label">
                 Price
               </label>
-              <input type="text" className="form-control" id="price" />
+              <input type="text" className="form-control" id="price" name="price"/>
             </div>
             <div className="col-12 text-end">
               <button type="submit" className="btn btn-primary">
