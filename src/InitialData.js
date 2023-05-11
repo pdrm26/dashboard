@@ -5,7 +5,7 @@ export const products = [
     category: "Technology",
     categoryId: 151,
     price: 2000,
-    editMode: true,
+    editMode: false,
   },
   {
     id: 2,
