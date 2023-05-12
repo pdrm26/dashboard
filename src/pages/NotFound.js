@@ -1,5 +1,10 @@
+import HelmetWrapper from "../components/HelmetWrapper";
+
 export default function NotFound() {
   return (
-    <div>NotFound</div>
-  )
+    <>
+      <HelmetWrapper title="Not Found - 404" />
+      <div>NotFound</div>
+    </>
+  );
 }

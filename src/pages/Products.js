@@ -2,6 +2,7 @@ import ProductInfo from "../components/product/ProductInfo";
 import ProductList from "../components/product/ProductList";
 import { products, categories, emptyProduct } from "../InitialData";
 import { useState } from "react";
+import HelmetWrapper from "../components/HelmetWrapper";
 
 export default function Products() {
   const [productsList, setProductsList] = useState(products);
@@ -51,28 +52,31 @@ export default function Products() {
     setSelectedProduct(emptyProduct);
   };
   return (
-    <div className="container mt-5">
-      <div className="card">
-        <div className="card-header">Manage Products</div>
-        <div className="card-body">
-          <div className="row my-4">
-            <div className="col-md-7">
-              <ProductList
-                products={productsList}
-                onEditProduct={onEditProductHandler}
-                onRemoveProduct={onRemoveProductHandler}
-              />
-            </div>
-            <div className="col-md-5">
-              <ProductInfo
-                categories={categories}
-                selectedProduct={selectedProduct}
-                onSetProductData={setProductsDataHandler}
-              />
+    <>
+      <HelmetWrapper title="Products" />
+      <div className="container mt-5">
+        <div className="card">
+          <div className="card-header">Manage Products</div>
+          <div className="card-body">
+            <div className="row my-4">
+              <div className="col-md-7">
+                <ProductList
+                  products={productsList}
+                  onEditProduct={onEditProductHandler}
+                  onRemoveProduct={onRemoveProductHandler}
+                />
+              </div>
+              <div className="col-md-5">
+                <ProductInfo
+                  categories={categories}
+                  selectedProduct={selectedProduct}
+                  onSetProductData={setProductsDataHandler}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,5 +1,9 @@
+import HelmetWrapper from "../components/HelmetWrapper";
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <>
+      <HelmetWrapper title="Dashboard - Home" />
+      <div>Dashboard</div>
+    </>
+  );
 }
