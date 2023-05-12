@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function ProductItem({ product, onEdit, onRemove }) {
   const editItemHandler = (productId) => onEdit(productId);
-  const removeItemHandler = (productId) => onRemove(productId);
+  const removeItemHandler = (productId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onRemove(productId);
+        Swal.fire("Deleted!", "Your Product has been deleted.", "success");
+      }
+    });
+  };
   return (
     <tr className={product.editMode ? "selected-product" : ""}>
       <th scope="row">{product.id}</th>
@@ -24,7 +40,9 @@ export default function ProductItem({ product, onEdit, onRemove }) {
         >
           Edit
         </button>
-        <Link to={`/products/${product.id}`} className="btn btn-sm btn-info"> {/*can use useHistory to push the address history(`/products/${product.id}`) **same result*/}
+        <Link to={`/products/${product.id}`} className="btn btn-sm btn-info">
+          {" "}
+          {/*can use useHistory to push the address history(`/products/${product.id}`) **same result*/}
           Info
         </Link>
       </td>
