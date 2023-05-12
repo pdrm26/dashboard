@@ -4,6 +4,7 @@ import Products from "./pages/Products";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import Product from "./pages/Product";
 
 export default function App() {
   return (
@@ -15,7 +16,8 @@ export default function App() {
           <Home />
         </Route> */}
         <Route exact path="/" component={Dashboard} />
-        <Route path="/products" component={Products} />
+        <Route exact path="/products" component={Products} />
+        <Route path="/products/:productId" component={Product} />
         <Route path="/*" component={NotFound} />
       </Switch>
     </Router>

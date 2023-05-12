@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ProductItem({ product, onEdit, onRemove }) {
   const editItemHandler = (productId) => onEdit(productId);
   const removeItemHandler = (productId) => onRemove(productId);
@@ -17,11 +19,14 @@ export default function ProductItem({ product, onEdit, onRemove }) {
         </button>
         <button
           type="button"
-          className="btn btn-sm btn-warning"
+          className="btn btn-sm btn-warning me-1"
           onClick={editItemHandler.bind(null, product.id)}
         >
           Edit
         </button>
+        <Link to={`/products/${product.id}`} className="btn btn-sm btn-info"> {/*can use useHistory to push the address history(`/products/${product.id}`) **same result*/}
+          Info
+        </Link>
       </td>
     </tr>
   );
