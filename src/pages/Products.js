@@ -1,9 +1,9 @@
-import ProductInfo from "./ProductInfo";
-import ProductList from "./ProductList";
-import { products, categories, emptyProduct } from "../../InitialData";
+import ProductInfo from "../components/product/ProductInfo";
+import ProductList from "../components/product/ProductList";
+import { products, categories, emptyProduct } from "../InitialData";
 import { useState } from "react";
 
-export default function ProductContainer() {
+export default function Products() {
   const [productsList, setProductsList] = useState(products);
   const [selectedProduct, setSelectedProduct] = useState(emptyProduct);
   const [lastEditProduct, setlastEditProduct] = useState(emptyProduct);
@@ -31,8 +31,11 @@ export default function ProductContainer() {
   const setProductsDataHandler = (productData) => {
     if (productData.id === 0) {
       // Add a new product
-      let lastProductIndex = productsList.at(-1).id
-      setProductsList((prevProducts) => [...prevProducts, {...productData, id: lastProductIndex += 1}]);
+      let lastProductIndex = productsList.at(-1).id;
+      setProductsList((prevProducts) => [
+        ...prevProducts,
+        { ...productData, id: (lastProductIndex += 1) },
+      ]);
     } else {
       // Edit the current product
       setProductsList((prevProducts) =>

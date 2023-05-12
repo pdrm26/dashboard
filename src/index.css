@@ -3,3 +3,7 @@
 .selected-product {
     background-color: rgb(255, 196, 59);
 }
+
+.menu-active {
+    font-weight: bold;
+}
