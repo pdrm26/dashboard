@@ -1,21 +1,22 @@
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
-const validate = (values) => {
-  const errors = {};
-  if (!values.email) {
-    errors.email = "Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Enter a valid mail";
-  }
+// const validate = (values) => {
+//   const errors = {};
+//   if (!values.email) {
+//     errors.email = "Required";
+//   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+//     errors.email = "Enter a valid mail";
+//   }
 
-  if (!values.password) {
-    errors.password = "Required";
-  } else if (values.password.length < 8) {
-    errors.password = "Must be greater or equal to 8";
-  }
+//   if (!values.password) {
+//     errors.password = "Required";
+//   } else if (values.password.length < 8) {
+//     errors.password = "Must be greater or equal to 8";
+//   }
 
-  return errors;
-};
+//   return errors;
+// };
 
 export default function Login() {
   const formik = useFormik({
@@ -23,7 +24,17 @@ export default function Login() {
       email: "",
       password: "",
     },
-    validate,
+    // validate,
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email address").required("Email is required"),
+      password: Yup.string()
+        .min(8, "Password must be at least 8 characters")
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+          "Password must contain at least one uppercase letter, one lowercase letter, and one number"
+        )
+        .required("Password is required"),
+    }),
     onSubmit: (values) => console.log(values),
   });
   return (
