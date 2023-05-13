@@ -49,7 +49,7 @@ export default function Login() {
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-floating mb-3">
                   <input
-                    id="email"
+                    id="floatingInput"
                     type="email"
                     className="form-control"
                     placeholder="name@example.com"
@@ -66,8 +66,8 @@ export default function Login() {
                 </div>
                 <div className="form-floating mb-3">
                   <input
-                    id="password"
                     type="password"
+                    id="floatingPassword"
                     className="form-control"
                     placeholder="Password"
                     {...formik.getFieldProps("password")}
