@@ -49,13 +49,13 @@ export default function Login() {
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-floating mb-3">
                   <input
-                    name="email"
                     id="email"
                     type="email"
                     className="form-control"
                     placeholder="name@example.com"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
+                    {...formik.getFieldProps("email")}
+                    // onChange={formik.handleChange}
+                    // value={formik.values.email}
                   />
                   <label htmlFor="floatingInput">Email address</label>
                   {formik.errors.email ? (
@@ -66,13 +66,13 @@ export default function Login() {
                 </div>
                 <div className="form-floating mb-3">
                   <input
-                    type="password"
-                    name="password"
-                    className="form-control"
                     id="password"
+                    type="password"
+                    className="form-control"
                     placeholder="Password"
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
+                    {...formik.getFieldProps("password")}
+                    // onChange={formik.handleChange}
+                    // value={formik.values.password}
                   />
                   <label htmlFor="floatingPassword">Password</label>
                   {formik.errors.password ? (
