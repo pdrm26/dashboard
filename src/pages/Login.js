@@ -4,7 +4,7 @@ const validate = (values) => {
   const errors = {};
   if (!values.email) {
     errors.email = "Required";
-  } else if (!values.email.includes("@")) {
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Enter a valid mail";
   }
 
@@ -48,7 +48,9 @@ export default function Login() {
                   />
                   <label htmlFor="floatingInput">Email address</label>
                   {formik.errors.email ? (
-                    <div className="login-vlaidation-message">{formik.errors.email}</div>
+                    <div className="login-vlaidation-message">
+                      {formik.errors.email}
+                    </div>
                   ) : null}
                 </div>
                 <div className="form-floating mb-3">
@@ -63,7 +65,9 @@ export default function Login() {
                   />
                   <label htmlFor="floatingPassword">Password</label>
                   {formik.errors.password ? (
-                    <div className="login-vlaidation-message">{formik.errors.password}</div>
+                    <div className="login-vlaidation-message">
+                      {formik.errors.password}
+                    </div>
                   ) : null}
                 </div>
                 <div className="form-check mb-3">
