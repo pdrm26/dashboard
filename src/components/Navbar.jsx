@@ -36,6 +36,14 @@ export default function Navbar() {
                   >
                     Products
                   </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    aria-current="page"
+                    to="/todos"
+                    activeClassName="menu-active"
+                  >
+                    Todos
+                  </NavLink>
                 </li>
               </ul>
               <form className="d-flex" role="search">
