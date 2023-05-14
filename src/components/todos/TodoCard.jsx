@@ -3,7 +3,7 @@ export default function TodoCard({ todos }) {
     <>
       {todos.map((todo) => {
         return (
-          <div className="col-md-3 mb-3">
+          <div className="col-md-3 mb-3" key={todo.id}>
             <div className="card h-100">
               <div
                 className={`card-header ${
