@@ -20,15 +20,19 @@ export default function Todos() {
   }, []);
 
   useEffect(() => {
-    setIsLoadingUserTodos(true);
-    fetch(`${process.env.REACT_APP_TODOS_API}/users/${currentUserId}/todos`)
-      .then((response) => response.json())
-      .then((result) => setCurrentUserTodos(result))
-      .catch((error) => console.log(error))
-      .finally(() => setIsLoadingUserTodos(false));
+    if (currentUserId === 0 || currentUserId) {
+      setIsLoadingUserTodos(true);
+      const addr = currentUserId ? `users/${currentUserId}/` : "";
+      fetch(`${process.env.REACT_APP_TODOS_API}/${addr}todos`)
+        .then((response) => response.json())
+        .then((result) => setCurrentUserTodos(result))
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoadingUserTodos(false));
+    }
   }, [currentUserId]);
 
-  const userSelectHandler = (event) => setCurrentUserId(event.target.value);
+  const userSelectHandler = (event) =>
+    setCurrentUserId(Number(event.target.value));
 
   return (
     <>

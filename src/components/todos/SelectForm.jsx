@@ -12,6 +12,9 @@ export default function SelectForm({ options, onSelect, isLoading }) {
           <option disabled selected>
             Select a user...
           </option>
+          <option value={0}>
+            All...
+          </option>
           {options.map((user) => {
             return (
               <option value={user.id} key={user.id}>
