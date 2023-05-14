@@ -1,24 +1,15 @@
-import Navbar from "./components/Navbar";
-import Products from "./pages/Products";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import NotFound from "./pages/NotFound";
-import Product from "./pages/Product";
+import PrivateRoute from "./utils/PrivateRoute";
+import Login from "./pages/Login";
+import AdminLayout from "./layouts/AdminLayout";
 
 export default function App() {
   return (
     <Router>
-      <Navbar />
       <Switch>
-        {/* The other way to set route */}
-        {/* <Route exact path="/">
-          <Home />
-        </Route> */}
-        <Route exact path="/" component={Dashboard} />
-        <Route exact path="/products" component={Products} />
-        <Route path="/products/:productId" component={Product} />
-        <Route path="/*" component={NotFound} />
+        <Route exact path="/login" component={Login} />
+        <PrivateRoute path="/" component={AdminLayout} />
       </Switch>
     </Router>
   );

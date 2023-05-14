@@ -1,25 +1,11 @@
 import { useFormik } from "formik";
+import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 import HelmetWrapper from "../components/HelmetWrapper";
 
-// const validate = (values) => {
-//   const errors = {};
-//   if (!values.email) {
-//     errors.email = "Required";
-//   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//     errors.email = "Enter a valid mail";
-//   }
-
-//   if (!values.password) {
-//     errors.password = "Required";
-//   } else if (values.password.length < 8) {
-//     errors.password = "Must be greater or equal to 8";
-//   }
-
-//   return errors;
-// };
 
 export default function Login() {
+  const history = useHistory();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -38,7 +24,17 @@ export default function Login() {
         )
         .required("Password is required"),
     }),
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      if (values.email === "ped@me" && values.password === "behappyPedram26") {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ username: "pedram", token: "1024lj%)(Q#KJDF" })
+        );
+        history.push("/");
+      } else {
+        console.log(values);
+      }
+    },
   });
   return (
     <>
