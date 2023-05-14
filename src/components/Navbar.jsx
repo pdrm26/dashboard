@@ -36,6 +36,8 @@ export default function Navbar() {
                   >
                     Products
                   </NavLink>
+                </li>
+                <li>
                   <NavLink
                     className="nav-link"
                     aria-current="page"
