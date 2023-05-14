@@ -29,3 +29,7 @@
   margin-top: 2px;
   color: darkred;
 }
+
+.completed-todo {
+  background-color: lightgreen;
+}
